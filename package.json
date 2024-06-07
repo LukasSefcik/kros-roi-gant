@@ -1,0 +1,15 @@
+{
+  "name": "kros-roi-gant",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "weweb build",
+    "serve": "weweb serve"
+  },
+  "dependencies": {
+    "devextreme": "23.2.4",
+    "devextreme-vue": "23.2.4"
+  },
+  "devDependencies": {
+    "@weweb/cli": "latest"
+  }
+}
