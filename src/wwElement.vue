@@ -45,7 +45,6 @@ export default {
   emits: ["trigger-event"],
   computed: {},
   methods: {
-    json,
     onListDragStart(event) {
       console.log("onListDragStart", event);
       event.cancel = true;
