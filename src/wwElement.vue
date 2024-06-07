@@ -1,6 +1,7 @@
 <template>
   <DxList
       :data-source="content.data"
+      :display-expr="content.displayExpr"
       key-expr="id"
   >
     <DxItemDragging

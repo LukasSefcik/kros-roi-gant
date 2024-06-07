@@ -72,5 +72,13 @@ export default {
             defaultValue: "",
             section: "settings",
         },
+        displayExpr: {
+            label: {
+                en: "Display Expression"
+            },
+            type: "Text",
+            defaultValue: "text",
+            section: "settings"
+        },
     },
 };
