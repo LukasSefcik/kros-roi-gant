@@ -5,7 +5,26 @@ export default {
         }
     },
     triggerEvents: [
-        { name: 'mousedown', label: { en: 'broMousedown' }, event: { value: [] }, default: true }
+        {
+            name: "onDragStart",
+            label: { en: "On drag start" },
+            event: {},
+        },
+        {
+            name: "onRemove",
+            label: { en: "On remove item" },
+            event: {},
+        },
+        {
+            name: "onAdd",
+            label: { en: "On add item" },
+            event: {},
+        },
+        {
+            name: "onReorder",
+            label: { en: "On reorder item" },
+            event: {},
+        }
     ],
     inherit: {
         type: "ww-layout"
