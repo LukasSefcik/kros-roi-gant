@@ -21,6 +21,21 @@
             }"
         >
           {{ item.title }}
+          <div
+              v-for="checkpoint in item._indicators_of_sheets"
+              :key="checkpoint.checkpoint_at"
+              :id="`checkpoint-${checkpoint.id}`"
+              class="gantt-checkpoint"
+              :style="{ left: getDaysSinceStart(new Date(checkpoint.checkpoint_at), new Date(item.started_at)) * dayWidth + 'px' }"
+          >
+            <DxTooltip
+                :target="`#checkpoint-${checkpoint.id}`"
+                show-event="mouseenter"
+                hide-event="mouseleave"
+            >
+              Tooltip content
+            </DxTooltip>
+          </div>
         </div>
       </div>
     </template>
@@ -31,11 +46,13 @@
 import "./dx.fluent.dx-light-theme.css";
 
 import DxList, {DxItemDragging} from 'devextreme-vue/list';
+import {DxTooltip} from 'devextreme-vue/tooltip';
 
 export default {
   components: {
     DxList,
     DxItemDragging,
+    DxTooltip,
   },
   data() {
     return {
@@ -102,8 +119,17 @@ export default {
   position: absolute;
   background-color: #3498db;
   color: white;
-  padding: 5px;
+  padding: 0 8px;
   border-radius: 4px;
-  line-height: 15px;
+}
+
+.gantt-checkpoint {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>
