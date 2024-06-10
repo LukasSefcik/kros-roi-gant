@@ -33,7 +33,7 @@
                 show-event="mouseenter"
                 hide-event="mouseleave"
             >
-              Tooltip content
+              {{ checkpoint.title }}
             </DxTooltip>
           </div>
         </div>
