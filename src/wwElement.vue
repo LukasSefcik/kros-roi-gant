@@ -80,6 +80,10 @@ export default {
     },
     onReorder(event) {
       console.log("onReorder", event);
+      this.$emit("trigger-event", {
+        name: "onReorder",
+        event: event,
+      });
     },
     onItemReordered(event) {
       console.log("onItemReordered", event);
