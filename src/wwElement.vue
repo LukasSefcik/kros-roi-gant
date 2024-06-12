@@ -1,6 +1,7 @@
 <template>
   <DxList
       :data-source="content.data"
+      @item-reordered="onItemReordered"
   >
     <DxItemDragging
         :data="content.data"
@@ -79,6 +80,13 @@ export default {
     },
     onReorder(event) {
       console.log("onReorder", event);
+    },
+    onItemReordered(event) {
+      console.log("onItemReordered", event);
+      this.$emit("trigger-event", {
+        name: "onItemReordered",
+        event: event,
+      });
     },
     getDayDiff(start, end) {
       const oneDay = 24 * 60 * 60 * 1000;
