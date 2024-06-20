@@ -24,6 +24,11 @@ export default {
             name: "onReorder",
             label: { en: "On reorder item" },
             event: {},
+        },
+        {
+            name: "onItemReordered",
+            label: { en: "On reorder item" },
+            event: {},
         }
     ],
     inherit: {
