@@ -4,13 +4,7 @@
       key-expr="id"
   >
     <DxItemDragging
-        data="dataSource"
         :allow-reordering="true"
-        :on-drag-start="onDragStart"
-        :on-add="onAdd"
-        :on-remove="onRemove"
-        :on-reorder="onReorder"
-        :group="content.draggingGroupName"
     />
     <template #item="{ data: item }">
       <div class="gantt-events">
