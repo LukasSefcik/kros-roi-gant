@@ -102,8 +102,12 @@ export default {
       return Math.round((date.getTime() - start.getTime()) / oneDay);
     },
     getItemMaxDate(item) {
-      const dates = item._indicators_of_sheets.flatMap(indicator => new Date(indicator.checkpoint_at));
-      return new Date(Math.max(...dates));
+      if (item && item._indicators_of_sheets.length > 0) {
+        const dates = item._indicators_of_sheets.flatMap(indicator => new Date(indicator.checkpoint_at));
+        return new Date(Math.max(...dates));
+      } else {
+        return new Date();
+      }
     },
     getMinDate() {
       // potential performance issue
