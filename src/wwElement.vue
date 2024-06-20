@@ -74,15 +74,15 @@ export default {
     },
     onAdd(e) {
       console.log("onAdd", e);
-      const newData = [...this.content.data[e.toData].value];
+      const newData = [...this.content.data];
       newData.splice(e.toIndex, 0, e.itemData);
-      this.content.data[e.toData].value = newData;
+      this.content.data = newData;
     },
     onRemove(e) {
       console.log("onRemove", e);
-      const newData = [...this.content.data[e.fromData].value];
+      const newData = [...this.content.data];
       newData.splice(e.fromIndex, 1);
-      this.content.data[e.fromData].value = newData;
+      this.content.data = newData;
     },
     onReorder(e) {
       console.log("onReorder", e);
