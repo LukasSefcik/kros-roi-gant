@@ -5,6 +5,7 @@
   >
     <DxItemDragging
         :allow-reordering="true"
+        :on-reorder="onReorder"
     />
     <template #item="{ data: item }">
       <div class="gantt-events">
@@ -81,8 +82,8 @@ export default {
     },
     onReorder(e) {
       console.log("onReorder", e);
-      this.onRemove(e);
-      this.onAdd(e);
+      // this.onRemove(e);
+      // this.onAdd(e);
       this.$emit("trigger-event", {
         name: "onReorder",
         event: e,
