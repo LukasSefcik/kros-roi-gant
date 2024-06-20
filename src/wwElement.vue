@@ -1,17 +1,16 @@
 <template>
   <DxList
-      :data-source="content.data"
-      :item-reordered="onItemReordered"
+      :data-source="dataSource"
   >
-<!--    <DxItemDragging-->
-<!--        :data="content.data"-->
-<!--        :allow-reordering="true"-->
-<!--        :on-drag-start="onDragStart"-->
-<!--        :on-add="onAdd"-->
-<!--        :on-remove="onRemove"-->
-<!--        :on-reorder="onReorder"-->
-<!--        :group="content.draggingGroupName"-->
-<!--    />-->
+    <DxItemDragging
+        :data="dataSource"
+        :allow-reordering="true"
+        :on-drag-start="onDragStart"
+        :on-add="onAdd"
+        :on-remove="onRemove"
+        :on-reorder="onReorder"
+        :group="content.draggingGroupName"
+    />
     <template #item="{ data: item }">
       <div class="gantt-events">
         <div
@@ -60,6 +59,7 @@ export default {
       minDate: new Date("1.1.2024"),
       dates: [],
       dayWidth: 1,
+      dataSource: [...this.content.data]
     };
   },
   props: {
@@ -74,15 +74,15 @@ export default {
     },
     onAdd(e) {
       console.log("onAdd", e);
-      const newData = [...this.content.data];
+      const newData = [...this.dataSource];
       newData.splice(e.toIndex, 0, e.itemData);
-      this.content.data = newData;
+      this.dataSource = newData;
     },
     onRemove(e) {
       console.log("onRemove", e);
-      const newData = [...this.content.data];
+      const newData = [...this.dataSource];
       newData.splice(e.fromIndex, 1);
-      this.content.data = newData;
+      this.dataSource = newData;
     },
     onReorder(e) {
       console.log("onReorder", e);
@@ -91,13 +91,6 @@ export default {
       this.$emit("trigger-event", {
         name: "onReorder",
         event: e,
-      });
-    },
-    onItemReordered(event) {
-      console.log("onItemReordered", event);
-      this.$emit("trigger-event", {
-        name: "onItemReordered",
-        event: event,
       });
     },
     getDayDiff(start, end) {
@@ -115,7 +108,7 @@ export default {
     getMinDate() {
       // potential performance issue
       if (!this.dates || this.dates.length === 0) {
-        this.dates = this.content.data.flatMap(event => [
+        this.dates = this.dataSource.flatMap(event => [
           new Date(event.started_at),
           ...event._indicators_of_sheets
               .filter(indicator => indicator.checkpoint_at !== null)

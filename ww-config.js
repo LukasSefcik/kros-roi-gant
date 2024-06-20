@@ -25,11 +25,6 @@ export default {
             label: { en: "On reorder item" },
             event: {},
         },
-        {
-            name: "onItemReordered",
-            label: { en: "On reorder item" },
-            event: {},
-        }
     ],
     inherit: {
         type: "ww-layout"
