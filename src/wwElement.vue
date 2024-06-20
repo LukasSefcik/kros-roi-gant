@@ -4,8 +4,13 @@
       key-expr="id"
   >
     <DxItemDragging
+        :data="dataSource"
         :allow-reordering="true"
+        :on-drag-start="onDragStart"
+        :on-add="onAdd"
+        :on-remove="onRemove"
         :on-reorder="onReorder"
+        :group="content.draggingGroupName"
     />
     <template #item="{ data: item }">
       <div class="gantt-events">
@@ -64,9 +69,9 @@ export default {
   emits: ["trigger-event"],
   computed: {},
   methods: {
-    onDragStart(event) {
-      console.log("onDragStart", event);
-      event.itemData = event.fromData;
+    onDragStart(e) {
+      console.log("onDragStart", e);
+      e.itemData = this.dataSource[e.fromIndex];
     },
     onAdd(e) {
       console.log("onAdd", e);
@@ -82,8 +87,8 @@ export default {
     },
     onReorder(e) {
       console.log("onReorder", e);
-      // this.onRemove(e);
-      // this.onAdd(e);
+      this.onRemove(e);
+      this.onAdd(e);
       this.$emit("trigger-event", {
         name: "onReorder",
         event: e,
