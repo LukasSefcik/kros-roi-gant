@@ -1,17 +1,17 @@
 <template>
   <DxList
       :data-source="content.data"
-      @item-reordered="onItemReordered"
+      :item-reordered="onItemReordered"
   >
-    <DxItemDragging
-        :data="content.data"
-        :allow-reordering="true"
-        :on-drag-start="onDragStart"
-        :on-add="onAdd"
-        :on-remove="onRemove"
-        :on-reorder="onReorder"
-        :group="content.draggingGroupName"
-    />
+<!--    <DxItemDragging-->
+<!--        :data="content.data"-->
+<!--        :allow-reordering="true"-->
+<!--        :on-drag-start="onDragStart"-->
+<!--        :on-add="onAdd"-->
+<!--        :on-remove="onRemove"-->
+<!--        :on-reorder="onReorder"-->
+<!--        :group="content.draggingGroupName"-->
+<!--    />-->
     <template #item="{ data: item }">
       <div class="gantt-events">
         <div
