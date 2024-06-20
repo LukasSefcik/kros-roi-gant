@@ -72,17 +72,25 @@ export default {
       console.log("onDragStart", event);
       event.itemData = event.fromData;
     },
-    onAdd(event) {
-      console.log("onAdd", event);
+    onAdd(e) {
+      console.log("onAdd", e);
+      const newData = [...this.content.data[e.toData].value];
+      newData.splice(e.toIndex, 0, e.itemData);
+      this.content.data[e.toData].value = newData;
     },
-    onRemove(event) {
-      console.log("onRemove", event);
+    onRemove(e) {
+      console.log("onRemove", e);
+      const newData = [...this.contents.data[e.fromData].value];
+      newData.splice(e.fromIndex, 1);
+      this.content.data[e.fromData].value = newData;
     },
-    onReorder(event) {
-      console.log("onReorder", event);
+    onReorder(e) {
+      console.log("onReorder", e);
+      this.onRemove(e);
+      this.onAdd(e);
       this.$emit("trigger-event", {
         name: "onReorder",
-        event: event,
+        event: e,
       });
     },
     onItemReordered(event) {
