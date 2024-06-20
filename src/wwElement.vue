@@ -108,7 +108,7 @@ export default {
     getMinDate() {
       // potential performance issue
       if (!this.dates || this.dates.length === 0) {
-        this.dates = this.dataSource.flatMap(event => [
+        this.dates = this.content.data.flatMap(event => [
           new Date(event.started_at),
           ...event._indicators_of_sheets
               .filter(indicator => indicator.checkpoint_at !== null)
