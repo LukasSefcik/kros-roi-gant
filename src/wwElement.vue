@@ -1,9 +1,10 @@
 <template>
   <DxList
       :data-source="dataSource"
+      key-expr="id"
   >
     <DxItemDragging
-        :data="dataSource"
+        data="dataSource"
         :allow-reordering="true"
         :on-drag-start="onDragStart"
         :on-add="onAdd"
