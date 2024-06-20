@@ -80,7 +80,7 @@ export default {
     },
     onRemove(e) {
       console.log("onRemove", e);
-      const newData = [...this.contents.data[e.fromData].value];
+      const newData = [...this.content.data[e.fromData].value];
       newData.splice(e.fromIndex, 1);
       this.content.data[e.fromData].value = newData;
     },
