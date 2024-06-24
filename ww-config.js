@@ -25,6 +25,11 @@ export default {
             label: { en: "On reorder item" },
             event: {},
         },
+        {
+            name: "onItemClick",
+            label: { en: "On item click" },
+            event: {},
+        }
     ],
     inherit: {
         type: "ww-layout"
