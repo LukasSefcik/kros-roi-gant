@@ -1,6 +1,7 @@
 <template>
   <DxList
       :data-source="dataSource"
+      :item-click="onItemClick"
       key-expr="id"
   >
     <DxItemDragging
@@ -91,6 +92,13 @@ export default {
       this.onAdd(e);
       this.$emit("trigger-event", {
         name: "onReorder",
+        event: e,
+      });
+    },
+    onItemClick(e) {
+      console.log("onItemClick", e);
+      this.$emit("trigger-event", {
+        name: "onItemClick",
         event: e,
       });
     },
