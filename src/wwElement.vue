@@ -1,7 +1,7 @@
 <template>
   <DxList
       :data-source="dataSource"
-      :item-click="onItemClick"
+      @item-click="onItemClick"
       key-expr="id"
   >
     <DxItemDragging
