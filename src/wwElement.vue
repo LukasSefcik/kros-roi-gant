@@ -1,52 +1,54 @@
 <template>
-  <div class="timeline">
-    <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
-      {{ week }}
+  <div class="container">
+    <div class="timeline">
+      <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
+        {{ week }}
+      </div>
     </div>
-  </div>
-  <DxList
-      :data-source="dataSource"
-      @item-click="onItemClick"
-      key-expr="id"
-  >
-    <DxItemDragging
-        :data="dataSource"
-        :allow-reordering="true"
-        :on-drag-start="onDragStart"
-        :on-add="onAdd"
-        :on-remove="onRemove"
-        :on-reorder="onReorder"
-        :group="content.draggingGroupName"
-    />
-    <template #item="{ data: item }">
-      <div class="gantt-events">
-        <div
-            class="gantt-event"
-            :style="{
+    <DxList
+        :data-source="dataSource"
+        @item-click="onItemClick"
+        key-expr="id"
+    >
+      <DxItemDragging
+          :data="dataSource"
+          :allow-reordering="true"
+          :on-drag-start="onDragStart"
+          :on-add="onAdd"
+          :on-remove="onRemove"
+          :on-reorder="onReorder"
+          :group="content.draggingGroupName"
+      />
+      <template #item="{ data: item }">
+        <div class="gantt-events">
+          <div
+              class="gantt-event"
+              :style="{
               left: getDaysSinceStart(new Date(item.started_at), getMinDate()) * dayWidth + 'px',
               width: getDayDiff(new Date(item.started_at), getItemMaxDate(item)) * dayWidth + 'px'
             }"
-        >
-          {{ item.title }}
-          <div
-              v-for="checkpoint in item._indicators_of_sheets"
-              :key="checkpoint.checkpoint_at"
-              :id="`checkpoint-${checkpoint.id}`"
-              class="gantt-checkpoint"
-              :style="{ left: getDaysSinceStart(new Date(checkpoint.checkpoint_at), new Date(item.started_at)) * dayWidth + 'px' }"
           >
-            <DxTooltip
-                :target="`#checkpoint-${checkpoint.id}`"
-                show-event="mouseenter"
-                hide-event="mouseleave"
+            {{ item.title }}
+            <div
+                v-for="checkpoint in item._indicators_of_sheets"
+                :key="checkpoint.checkpoint_at"
+                :id="`checkpoint-${checkpoint.id}`"
+                class="gantt-checkpoint"
+                :style="{ left: getDaysSinceStart(new Date(checkpoint.checkpoint_at), new Date(item.started_at)) * dayWidth + 'px' }"
             >
-              {{ checkpoint.title }}
-            </DxTooltip>
+              <DxTooltip
+                  :target="`#checkpoint-${checkpoint.id}`"
+                  show-event="mouseenter"
+                  hide-event="mouseleave"
+              >
+                {{ checkpoint.title }}
+              </DxTooltip>
+            </div>
           </div>
         </div>
-      </div>
-    </template>
-  </DxList>
+      </template>
+    </DxList>
+  </div>
 </template>
 
 <script>
@@ -172,7 +174,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .timeline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
