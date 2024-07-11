@@ -81,6 +81,9 @@ export default {
       this.generateWeeklyTimeline();
       console.log('weekly timeline', this.weeklyTimeline);
     },
+    created() {
+      console.log('created');
+    },
     onDragStart(e) {
       console.log("onDragStart", e);
       e.itemData = this.dataSource[e.fromIndex];
