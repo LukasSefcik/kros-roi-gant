@@ -1,6 +1,6 @@
 <template>
   <div class="timeline">
-    <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
+    <div v-for="week in generateWeeklyTimeline" :key="week" class="timeline-week">
       {{ week }}
     </div>
   </div>
@@ -158,10 +158,9 @@ export default {
         this.weeklyTimeline.push(currentDate.toISOString().split('T')[0]);
         currentDate = new Date(currentDate.getTime() + oneWeek);
       }
+
+      return this.weeklyTimeline;
     },
-    mounted() {
-      this.generateWeeklyTimeline();
-    }
   }
 };
 </script>
