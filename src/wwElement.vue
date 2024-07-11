@@ -76,6 +76,11 @@ export default {
   emits: ["trigger-event"],
   computed: {},
   methods: {
+    mounted() {
+      console.log('mounted');
+      this.generateWeeklyTimeline();
+      console.log('weekly timeline', this.weeklyTimeline);
+    },
     onDragStart(e) {
       console.log("onDragStart", e);
       e.itemData = this.dataSource[e.fromIndex];
