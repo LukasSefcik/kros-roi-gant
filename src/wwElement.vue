@@ -78,12 +78,7 @@ export default {
   emits: ["trigger-event"],
   computed: {},
   mounted() {
-    console.log('mounted');
     this.generateWeeklyTimeline();
-    console.log('weekly timeline', this.weeklyTimeline);
-  },
-  created() {
-    console.log('created');
   },
   methods: {
     onDragStart(e) {
@@ -185,6 +180,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -198,6 +194,7 @@ export default {
 }
 
 .dx-scrollable {
+  margin-top: 50px;
   width: 100%;
 }
 
