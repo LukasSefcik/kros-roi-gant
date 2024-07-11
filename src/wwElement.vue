@@ -1,9 +1,9 @@
 <template>
-  <div class="timeline">
-    <div v-for="week in generateWeeklyTimeline" :key="week" class="timeline-week">
-      {{ week }}
-    </div>
-  </div>
+<!--  <div class="timeline">-->
+<!--    <div v-for="week in generateWeeklyTimeline" :key="week" class="timeline-week">-->
+<!--      {{ week }}-->
+<!--    </div>-->
+<!--  </div>-->
   <DxList
       :data-source="dataSource"
       @item-click="onItemClick"
