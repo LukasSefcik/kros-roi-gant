@@ -1,4 +1,9 @@
 <template>
+  <div class="timeline">
+    <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
+      {{ week }}
+    </div>
+  </div>
   <DxList
       :data-source="dataSource"
       @item-click="onItemClick"
@@ -61,7 +66,8 @@ export default {
       minDate: new Date("1.1.2024"),
       dates: [],
       dayWidth: 1,
-      dataSource: [...this.content.data]
+      dataSource: [...this.content.data],
+      weeklyTimeline: []
     };
   },
   props: {
@@ -130,11 +136,50 @@ export default {
       }
       return new Date(Math.min(...this.dates));
     },
+    getMaxDate() {
+      // potential performance issue
+      if (!this.dates || this.dates.length === 0) {
+        this.dates = this.content.data.flatMap(event => [
+          new Date(event.started_at),
+          ...event._indicators_of_sheets
+              .filter(indicator => indicator.checkpoint_at !== null)
+              .map(indicator => new Date(indicator.checkpoint_at))
+        ]);
+      }
+      return new Date(Math.max(...this.dates));
+    },
+    generateWeeklyTimeline() {
+      const minDate = this.getMinDate();
+      const maxDate = this.getMaxDate();
+      const oneWeek = 7 * 24 * 60 * 60 * 1000;
+      let currentDate = new Date(minDate);
+
+      while (currentDate <= maxDate) {
+        this.weeklyTimeline.push(currentDate.toISOString().split('T')[0]);
+        currentDate = new Date(currentDate.getTime() + oneWeek);
+      }
+    },
+    mounted() {
+      this.generateWeeklyTimeline();
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.timeline-week {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  padding: 5px;
+}
+
 .gantt-events {
   position: relative;
   display: flex;
