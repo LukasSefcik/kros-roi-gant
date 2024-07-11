@@ -1,9 +1,9 @@
 <template>
-<!--  <div class="timeline">-->
-<!--    <div v-for="week in generateWeeklyTimeline" :key="week" class="timeline-week">-->
-<!--      {{ week }}-->
-<!--    </div>-->
-<!--  </div>-->
+  <div class="timeline">
+    <div v-for="week in generateWeeklyTimeline" :key="week" class="timeline-week">
+      {{ week }}
+    </div>
+  </div>
   <DxList
       :data-source="dataSource"
       @item-click="onItemClick"
@@ -177,6 +177,10 @@ export default {
   text-align: center;
   border-right: 1px solid #ccc;
   padding: 5px;
+}
+
+.dx-scrollable {
+  width: 100%;
 }
 
 .gantt-events {
