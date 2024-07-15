@@ -2,7 +2,11 @@
   <div class="container">
     <div class="timeline">
       <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
-        {{ week }}
+        <div
+          :style="{ width: dayWidth * 7 + 'px' }"
+        >
+          {{ week }}
+        </div>
       </div>
     </div>
     <DxList
@@ -160,7 +164,6 @@ export default {
       let currentDate = new Date(minDate);
 
       while (currentDate <= maxDate) {
-        // this.weeklyTimeline.push(currentDate.toISOString().split('T')[0]);
         this.weeklyTimeline.push(currentDate.getDate().toString().padStart(2, '0') + '.' +
             (currentDate.getMonth() + 1).toString().padStart(2, '0') + '.' +
             currentDate.getFullYear());
@@ -194,6 +197,7 @@ export default {
   text-align: center;
   border-right: 1px solid #ccc;
   padding: 5px;
+  font-size: 12px;
 }
 
 .dx-scrollable {
