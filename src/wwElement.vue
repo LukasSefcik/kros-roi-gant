@@ -72,7 +72,7 @@ export default {
     return {
       minDate: new Date("1.1.2024"),
       dates: [],
-      dayWidth: 2,
+      dayWidth: 3,
       dataSource: [...this.content.data],
       weeklyTimeline: []
     };
