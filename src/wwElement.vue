@@ -4,7 +4,7 @@
       <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
         <div
             class="timeline-week-text"
-            :style="{ width: dayWidth * 7 * dayWidth + 'px' }"
+            :style="{ width: dayWidth * 7 + 'px' }"
         >
           {{ week }}
         </div>
