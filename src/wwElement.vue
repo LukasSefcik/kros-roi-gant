@@ -2,7 +2,7 @@
   <div class="container">
     <div class="timeline">
       <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
-        {{ formatDate(week) }}
+        {{ week }}
       </div>
     </div>
     <DxList
@@ -160,16 +160,13 @@ export default {
       let currentDate = new Date(minDate);
 
       while (currentDate <= maxDate) {
-        this.weeklyTimeline.push(currentDate.toISOString().split('T')[0]);
+        // this.weeklyTimeline.push(currentDate.toISOString().split('T')[0]);
+        this.weeklyTimeline.push(currentDate.getDate().toString().padStart(2, '0') + '.' +
+            (currentDate.getMonth() + 1).toString().padStart(2, '0') + '.' +
+            currentDate.getFullYear());
         currentDate = new Date(currentDate.getTime() + oneWeek);
       }
     },
-    formatDate(date) {
-      const day = date.getDate().toString().padStart(2, '0');
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}.${month}.${year}`;
-    }
   }
 };
 </script>
