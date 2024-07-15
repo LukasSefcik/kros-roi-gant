@@ -3,7 +3,8 @@
     <div class="timeline">
       <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
         <div
-          :style="{ width: dayWidth * 7 + 'px' }"
+            class="timeline-week-text"
+            :style="{ width: dayWidth * 7 + 'px' }"
         >
           {{ week }}
         </div>
@@ -198,6 +199,10 @@ export default {
   border-right: 1px solid #ccc;
   padding: 5px;
   font-size: 12px;
+}
+
+.timeline-week-text {
+  rotate: 90deg;
 }
 
 .dx-scrollable {
