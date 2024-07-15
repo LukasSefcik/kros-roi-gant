@@ -4,7 +4,7 @@
       <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
         <div
             class="timeline-week-text"
-            :style="{ width: dayWidth * 7 + 'px' }"
+            :style="{ width: dayWidth * 7 * dayWidth + 'px' }"
         >
           {{ week }}
         </div>
@@ -72,7 +72,7 @@ export default {
     return {
       minDate: new Date("1.1.2024"),
       dates: [],
-      dayWidth: 1,
+      dayWidth: 2,
       dataSource: [...this.content.data],
       weeklyTimeline: []
     };
