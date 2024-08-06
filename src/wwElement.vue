@@ -219,6 +219,7 @@ export default {
 
 .timeline-week-text {
   rotate: 90deg;
+  padding-left: 10px;
 }
 
 .dx-scrollable {
