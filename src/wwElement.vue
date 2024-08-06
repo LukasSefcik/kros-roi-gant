@@ -4,8 +4,9 @@
       <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
         <div
             class="timeline-week-text"
-            :style="{ width: ((30 * dayWidth) - 1) + 'px' }"
+            :style="{ width: ((new Date(new Date().getFullYear(), month.split('.')[0], 0).getDate() * dayWidth) - 1) + 'px' }"
         >
+<!--            :style="{ width: ((30 * dayWidth) - 1) + 'px' }"-->
           {{ week }}
         </div>
       </div>
@@ -183,6 +184,7 @@ export default {
             currentDate.getFullYear()
         );
         currentDate.setMonth(currentDate.getMonth() + 1);
+        currentDate.setDate(1); // Nastavíme deň na prvý deň v mesiaci
       }
     },
   }
