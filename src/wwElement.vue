@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="timeline">
-      <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
+      <div v-for="month in weeklyTimeline" :key="month" class="timeline-week">
         <div
             class="timeline-week-text"
-            :style="{ width: ((new Date(new Date().getFullYear(), week.split('.')[0], 0).getDate() * dayWidth) - 1) + 'px' }"
+            :style="{ width: ((new Date(new Date().getFullYear(), month.split('.')[0], 0).getDate() * dayWidth) - 1) + 'px' }"
         >
-<!--            :style="{ width: ((30 * dayWidth) - 1) + 'px' }"-->
-          {{ week }}
+<!--            :style="{ width: ((7 * dayWidth) - 1) + 'px' }"-->
+          {{ month }}
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@ export default {
     return {
       minDate: new Date("1.1.2024"),
       dates: [],
-      dayWidth: 3,
+      dayWidth: 5,
       dataSource: [...this.content.data],
       weeklyTimeline: []
     };
