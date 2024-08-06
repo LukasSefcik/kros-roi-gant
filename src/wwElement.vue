@@ -4,7 +4,7 @@
       <div v-for="week in weeklyTimeline" :key="week" class="timeline-week">
         <div
             class="timeline-week-text"
-            :style="{ width: ((7 * dayWidth) - 1) + 'px' }"
+            :style="{ width: ((30 * dayWidth) - 1) + 'px' }"
         >
           {{ week }}
         </div>
@@ -83,7 +83,8 @@ export default {
   emits: ["trigger-event"],
   computed: {},
   mounted() {
-    this.generateWeeklyTimeline();
+    // this.generateWeeklyTimeline();
+    this.generateMonthlyTimeline();
   },
   methods: {
     onDragStart(e) {
@@ -169,6 +170,19 @@ export default {
             (currentDate.getMonth() + 1).toString().padStart(2, '0') + '.' +
             currentDate.getFullYear());
         currentDate = new Date(currentDate.getTime() + oneWeek);
+      }
+    },
+    generateMonthlyTimeline() {
+      const minDate = this.getMinDate();
+      const maxDate = this.getMaxDate();
+      let currentDate = new Date(minDate);
+
+      while (currentDate <= maxDate) {
+        this.weeklyTimeline.push(
+            (currentDate.getMonth() + 1).toString().padStart(2, '0') + '.' +
+            currentDate.getFullYear()
+        );
+        currentDate.setMonth(currentDate.getMonth() + 1);
       }
     },
   }
